@@ -516,7 +516,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
         return;
     }
     CGFloat clampedBottomHeight = MAX(bottomHeight, self.minimumBottomHeightCached);
-    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
+    CGRect bounds = CGRectMake(20, 0, size.width - 20, size.height);
 
     // content fills entire view
     [self.contentViewController.view setFrame:bounds];
@@ -534,7 +534,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
             CGFloat expandedBottomHeight = MAX(maxHeight, clampedBottomHeight);
             CGFloat yPosition = CGRectGetMaxY(bounds) - clampedBottomHeight;
 
-            bottomFrame = CGRectMake(0, yPosition, CGRectGetWidth(bounds), expandedBottomHeight);
+            bottomFrame = CGRectMake(20, yPosition, CGRectGetWidth(bounds) - 20, expandedBottomHeight + 50);
             break;
         }
 
@@ -542,7 +542,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
             clampedBottomHeight = bottomHeight;
             CGFloat yPosition = CGRectGetMaxY(bounds) - clampedBottomHeight;
 
-            bottomFrame = CGRectMake(0, yPosition, CGRectGetWidth(bounds), clampedBottomHeight);
+            bottomFrame = CGRectMake(20, yPosition, CGRectGetWidth(bounds) - 20, clampedBottomHeight);
             break;
         }
     }
@@ -553,7 +553,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
     }
 
     [self.bottomViewController.view setFrame:bottomFrame];
-
+    
     // inform content delegate that edge insets were updated
     if (self.contentViewController) {
         /* Avoid duplicating the bottom safe area
@@ -637,15 +637,6 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
 }
 
 #pragma mark Dimming
-
-// status bar should use light style if dimmed
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    if (self.dimmingView.alpha) {
-        return UIStatusBarStyleLightContent;
-    }
-
-    return self.contentViewController.preferredStatusBarStyle;
-}
 
 - (void)setDimmingColor:(UIColor *)dimmingColor {
     _dimmingColor = dimmingColor;
