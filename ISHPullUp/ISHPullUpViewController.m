@@ -516,7 +516,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
         return;
     }
     CGFloat clampedBottomHeight = MAX(bottomHeight, self.minimumBottomHeightCached);
-    CGRect bounds = CGRectMake(20, 0, size.width - 20, size.height);
+    CGRect bounds = CGRectMake(0, 0, size.width, size.height);
 
     // content fills entire view
     [self.contentViewController.view setFrame:bounds];
@@ -534,7 +534,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
             CGFloat expandedBottomHeight = MAX(maxHeight, clampedBottomHeight);
             CGFloat yPosition = CGRectGetMaxY(bounds) - clampedBottomHeight;
 
-            bottomFrame = CGRectMake(20, yPosition, CGRectGetWidth(bounds) - 20, expandedBottomHeight + 50);
+            bottomFrame = CGRectMake(0, yPosition, CGRectGetWidth(bounds), expandedBottomHeight + 50);
             break;
         }
 
@@ -542,7 +542,7 @@ const CGFloat ISHPullUpViewControllerDefaultTopMargin = 20.0;
             clampedBottomHeight = bottomHeight;
             CGFloat yPosition = CGRectGetMaxY(bounds) - clampedBottomHeight;
 
-            bottomFrame = CGRectMake(20, yPosition, CGRectGetWidth(bounds) - 20, clampedBottomHeight);
+            bottomFrame = CGRectMake(0, yPosition, CGRectGetWidth(bounds), clampedBottomHeight);
             break;
         }
     }
